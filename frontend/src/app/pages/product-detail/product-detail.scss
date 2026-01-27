@@ -1,0 +1,22 @@
+// Cursor de manito en las miniaturas
+.is-clickable {
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 2px solid transparent; // Borde invisible por defecto
+  opacity: 0.7;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+// Clase para la miniatura activa (borde de color)
+.is-active-img {
+  border-color: #48c774; // Verde Bulma (o usa tu color primario)
+  opacity: 1;
+  transform: scale(1.05); // Un pequeño zoom
+}
+
+.card {
+  box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1);
+}

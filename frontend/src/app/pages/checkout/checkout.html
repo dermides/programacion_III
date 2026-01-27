@@ -1,0 +1,82 @@
+<div class="container mt-5">
+  <div class="mb-4">
+    <a routerLink="/cart" class="button is-text pl-0">
+      <i class="fas fa-arrow-left mr-2"></i> Volver al Carrito
+    </a>
+  </div>
+  <div class="columns">
+
+    <div class="column is-7">
+      <div class="box">
+        <h3 class="title is-4 mb-4">Detalles de Pago</h3>
+
+        <div class="field">
+          <label class="label">Nombre en la tarjeta</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="Ej. Juan Pérez">
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Número de Tarjeta</label>
+          <div class="control has-icons-left">
+            <input class="input" type="text" placeholder="0000 0000 0000 0000">
+            <span class="icon is-small is-left"><i class="fas fa-credit-card"></i></span>
+          </div>
+        </div>
+
+        <div class="columns">
+          <div class="column">
+            <div class="field">
+              <label class="label">Expiración</label>
+              <div class="control">
+                <input class="input" type="text" placeholder="MM/YY">
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="field">
+              <label class="label">CVV</label>
+              <div class="control">
+                <input class="input" type="text" placeholder="123">
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="column is-5">
+      <div class="card has-background-primary-light">
+        <div class="card-content">
+          <h3 class="title is-4">Resumen de Orden</h3>
+
+          @for (item of cartService.cartItems(); track item.product.id) {
+          <div class="is-flex is-justify-content-space-between mb-2">
+            <span>{{ item.quantity }}x {{ item.product.name }}</span>
+            <strong>{{ (item.product.price * item.quantity) | currency:'USD' }}</strong>
+          </div>
+          }
+
+          <hr class="has-background-grey-lighter">
+
+          <div class="is-flex is-justify-content-space-between title is-4">
+            <span>Total:</span>
+            <span>{{ cartService.totalPrice() | currency:'USD' }}</span>
+          </div>
+
+          <button class="button is-primary is-fullwidth is-large mt-4" [ngClass]="{'is-loading': loading}"
+            (click)="processPayment()">
+            Confirmar Pago
+          </button>
+
+          <p class="help has-text-centered mt-2">
+            Al confirmar, se creará la orden en el sistema.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

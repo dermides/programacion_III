@@ -1,0 +1,57 @@
+<nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" routerLink="/">
+      <strong class="has-text-warning">⚡ MegaStore</strong>
+    </a>
+  </div>
+
+  <div class="navbar-menu is-active">
+    <div class="navbar-start">
+      <a class="navbar-item" routerLink="/products">Productos</a>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+
+          <a class="button is-warning" routerLink="/cart">
+            <span class="icon"><i class="fas fa-shopping-cart"></i></span>
+            <span>Carrito ({{ cartService.totalItems() }})</span>
+          </a>
+
+          @if (user) {
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              Hola, {{ user.email }}
+            </a>
+
+            <div class="navbar-dropdown is-right">
+              <a class="navbar-item" routerLink="/my-orders">
+                <span class="icon mr-2"><i class="fas fa-box"></i></span>
+                Mis Pedidos
+              </a>
+
+              <a class="navbar-item" routerLink="/profile">Mi Billetera</a>
+
+              <hr class="navbar-divider">
+
+              <a class="navbar-item has-text-danger" (click)="logout()">
+                Salir
+              </a>
+            </div>
+          </div>
+          } @else {
+            <div class="navbar-item">
+              <div class="buttons">
+                <a routerLink="/register" class="button is-primary"><strong>Registrate</strong></a>
+                <a routerLink="/login" class="button is-light">Mi Cuenta</a>
+              </div>
+            </div>
+          }
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

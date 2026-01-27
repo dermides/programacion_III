@@ -1,0 +1,59 @@
+<div class="columns is-centered mt-6">
+  <div class="column is-4">
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title has-text-centered is-justify-content-center">
+          Crear Cuenta Nueva
+        </p>
+      </header>
+      <div class="card-content">
+
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+          <div class="field">
+            <label class="label">Email</label>
+            <div class="control has-icons-left">
+              <input class="input" type="email" placeholder="tu@email.com" formControlName="email">
+              <span class="icon is-small is-left"><i class="fas fa-envelope"></i></span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Contraseña</label>
+            <div class="control has-icons-left">
+              <input class="input" type="password" placeholder="Mínimo 6 caracteres" formControlName="password">
+              <span class="icon is-small is-left"><i class="fas fa-lock"></i></span>
+            </div>
+            @if (registerForm.get('password')?.invalid && registerForm.get('password')?.touched) {
+               <p class="help is-danger">La contraseña es muy corta</p>
+            }
+          </div>
+
+          <div class="field">
+             <label class="label">Soy un:</label>
+             <div class="control">
+               <div class="select is-fullwidth">
+                 <select formControlName="role">
+                   <option value="customer">Cliente (Comprador)</option>
+                   <option value="seller">Vendedor (Admin)</option> </select>
+               </div>
+             </div>
+          </div>
+
+          <div class="field mt-5">
+            <button class="button is-link is-fullwidth" [disabled]="registerForm.invalid" type="submit">
+              <strong>Registrarse</strong>
+            </button>
+          </div>
+
+        </form>
+
+        <hr>
+        <p class="has-text-centered">
+          ¿Ya tienes cuenta? <a routerLink="/login">Ingresa aquí</a>
+        </p>
+
+      </div>
+    </div>
+  </div>
+</div>

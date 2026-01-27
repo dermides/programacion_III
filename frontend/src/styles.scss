@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+// src/styles.scss
+@import "bulma/css/bulma.css";
+@import "@fortawesome/fontawesome-free/css/all.css";
+
+// Ajuste global para que el footer no flote raro
+html, body {
+  height: 100%;
+  background-color: #f5f5f5; // Un gris muy suave de fondo
+}

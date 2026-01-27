@@ -1,0 +1,52 @@
+<section class="section">
+  <div class="container">
+    <h1 class="title">Mis Pedidos</h1>
+
+    @if (loading) {
+      <p>Cargando historial...</p>
+    } @else if (orders.length === 0) {
+      <div class="notification is-warning is-light">
+        Aún no has realizado compras. <a routerLink="/">¡Ve al catálogo!</a>
+      </div>
+    } @else {
+
+      <div class="table-container">
+        <table class="table is-fullwidth is-striped is-hoverable">
+          <thead>
+            <tr>
+              <th># Orden</th>
+              <th>Fecha</th>
+              <th>Estado</th>
+              <th>Productos</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (order of orders; track order.id) {
+              <tr>
+                <td><strong>{{ order.id }}</strong></td>
+                <td>{{ order.createdAt | date:'medium' }}</td>
+                <td>
+                  <span class="tag is-info">{{ order.status || 'Pendiente' }}</span>
+                </td>
+                <td>
+                  <ul>
+                    @for (item of order.items; track item.id) {
+                      <li class="is-size-7">
+                        {{ item.quantity }}x {{ item.product.name }}
+                      </li>
+                    }
+                  </ul>
+                </td>
+                <td class="has-text-weight-bold has-text-success">
+                  {{ order.totalPrice | currency:'USD' }}
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+
+    }
+  </div>
+</section>

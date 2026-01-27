@@ -1,0 +1,83 @@
+<section class="section">
+  <div class="container">
+    <h1 class="title">Tu Carrito</h1>
+
+    @if (cartService.cartItems().length === 0) {
+      <div class="notification is-info is-light">
+        Tu carrito está vacío. <a routerLink="/">Ir a comprar</a>
+      </div>
+    } @else {
+
+      <div class="columns">
+        <div class="column is-8">
+          <table class="table is-fullwidth is-hoverable">
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Cant.</th>
+                <th>Subtotal</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (item of cartService.cartItems(); track item.product.id) {
+                <tr>
+                  <td>
+                    <div class="is-flex is-align-items-center">
+                      <figure class="image is-48x48 mr-3">
+                         <img [src]="item.product.images[0]
+                                     ? apiUrl + '/uploads/' + item.product.images[0].fileName
+                                     : 'https://bulma.io/assets/images/placeholders/1280x960.png'">
+                      </figure>
+                      <strong>{{ item.product.name }}</strong>
+                    </div>
+                  </td>
+                  <td>{{ item.product.price | currency:'USD' }}</td>
+                  <td>
+                    <div class="field has-addons">
+                      <p class="control">
+                        <button class="button is-small" (click)="decrease(item.product.id, item.quantity)">-</button>
+                      </p>
+                      <p class="control">
+                        <button class="button is-small is-static">{{ item.quantity }}</button>
+                      </p>
+                      <p class="control">
+                        <button class="button is-small" (click)="increase(item.product.id, item.quantity)">+</button>
+                      </p>
+                    </div>
+                  </td>
+                  <td>{{ (item.product.price * item.quantity) | currency:'USD' }}</td>
+                  <td>
+                    <button class="delete has-background-danger" (click)="remove(item.product.id)"></button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+
+        <div class="column is-4">
+          <div class="card">
+            <div class="card-content">
+              <p class="title is-4">Resumen</p>
+              <div class="is-flex is-justify-content-space-between mb-2">
+                <span>Total Ítems:</span>
+                <strong>{{ cartService.totalItems() }}</strong>
+              </div>
+              <div class="is-flex is-justify-content-space-between mb-4">
+                <span class="title is-5">Total a Pagar:</span>
+                <span class="title is-5 has-text-success">{{ cartService.totalPrice() | currency:'USD' }}</span>
+              </div>
+
+              <button class="button is-primary is-fullwidth is-large" routerLink="/checkout">
+                Proceder al Pago
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    }
+  </div>
+</section>

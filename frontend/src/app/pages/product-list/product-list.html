@@ -1,0 +1,56 @@
+<section class="section">
+  <div class="container">
+    <h1 class="title">Nuestros Productos</h1>
+
+    @if (products$ | async; as products) {
+
+    <div class="columns is-multiline">
+      @for (product of products; track product.id) {
+      <div class="column is-one-quarter-desktop is-half-tablet">
+        <div class="card h-100">
+
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img [src]="product.images.length > 0
+                              ? apiUrl + '/uploads/' + product.images[0].fileName
+                              : 'https://bulma.io/assets/images/placeholders/1280x960.png'" alt="{{ product.name }}"
+                style="object-fit: cover;">
+            </figure>
+          </div>
+
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content">
+                <p class="title is-4">{{ product.name }}</p>
+                <p class="subtitle is-6 has-text-success has-text-weight-bold">
+                  {{ product.price | currency:'USD' }}
+                </p>
+              </div>
+            </div>
+
+            <div class="content">
+
+              {{ (product.description || 'Sin descripción disponible').slice(0, 80) }}...
+            </div>
+          </div>
+
+          <footer class="card-footer">
+            <a [routerLink]="['/products', product.id]" class="card-footer-item has-text-info">
+              Ver detalle
+            </a>
+            <a class="card-footer-item has-text-primary">
+              <i class="fas fa-cart-plus mr-1"></i> Agregar
+            </a>
+          </footer>
+        </div>
+      </div>
+      }
+    </div>
+
+    } @else {
+    <div class="has-text-centered mt-6">
+      <button class="button is-loading is-white is-large">Cargando...</button>
+    </div>
+    }
+  </div>
+</section>

@@ -1,0 +1,26 @@
+{
+  
+  "compilerOptions": {
+    /* Módulos */
+    "module": "commonjs",                  // Importante: Compilar a CommonJS
+    //"moduleResolution": "node",            // Resolución clásica de Node
+    "verbatimModuleSyntax": false,         // Importante: DESACTIVAR esto (o bórralo)
+    "esModuleInterop": true,               // Permite compatibilidad entre CommonJS y ES Modules
+    
+    /* Otras opciones recomendadas */
+    "target": "es2016",                    // O es2020
+    "strict": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+
+    // OBLIGATORIO para TypeORM:
+    "experimentalDecorators": true,      // Habilita el uso de @Entity, @Column, etc.
+    "emitDecoratorMetadata": true,       // Permite a TypeORM saber si una propiedad es String, Number, etc.
+
+    // RECOMENDADO para evitar errores de "propiedad no inicializada":
+    "strictPropertyInitialization": false,
+
+    "typeRoots": ["./node_modules/@types", "./src/types"]
+  }
+
+}
