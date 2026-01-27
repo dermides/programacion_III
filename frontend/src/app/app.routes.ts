@@ -8,6 +8,8 @@ import { CheckoutComponent } from './pages/checkout/checkout';
 import { MyOrdersComponent } from './pages/my-orders/my-orders';
 import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-dashboard';
 import { adminGuard } from './guards/admin-guard';
+import { AdminProductsComponent } from './pages/admin/admin-products/admin-products';
+import { ProductFormComponent } from './pages/admin/product-form/product-form';
 
 export const routes: Routes = [
   // Ruta por defecto (Home)
@@ -25,11 +27,17 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
 
-  {
-    path: 'admin',
-    component: AdminDashboardComponent,
-    canActivate: [adminGuard] // <--- ¡El portero!
-  },
+  // Dashboard
+  { path: 'admin', component: AdminDashboardComponent, canActivate: [adminGuard] },
+
+  // Lista de Productos
+  { path: 'admin/products', component: AdminProductsComponent, canActivate: [adminGuard] },
+
+  // Crear Nuevo
+  { path: 'admin/products/new', component: ProductFormComponent, canActivate: [adminGuard] },
+
+  // Editar Existente (usamos :id)
+  { path: 'admin/products/edit/:id', component: ProductFormComponent, canActivate: [adminGuard] },
 
   // Redirección por si escriben cualquier cosa
   { path: '**', redirectTo: '' }

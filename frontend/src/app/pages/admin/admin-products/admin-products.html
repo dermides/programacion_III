@@ -1,0 +1,51 @@
+<div class="container mt-5">
+  <div class="level">
+    <div class="level-left">
+      <h1 class="title">Inventario de Productos</h1>
+    </div>
+    <div class="level-right">
+      <a routerLink="/admin/products/new" class="button is-primary">
+        <span class="icon"><i class="fas fa-plus"></i></span>
+        <span>Nuevo Producto</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="box">
+    <table class="table is-fullwidth is-striped is-hoverable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Precio</th>
+          <th>Stock</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (product of products; track product.id) {
+          <tr>
+            <td>{{ product.id }}</td>
+            <td><strong>{{ product.name }}</strong></td>
+            <td>{{ product.price | currency:'USD' }}</td>
+            <td>
+              <span class="tag" [class.is-danger]="product.stock === 0" [class.is-success]="product.stock > 0">
+                {{ product.stock }}
+              </span>
+            </td>
+            <td>
+              <div class="buttons are-small">
+                <a [routerLink]="['/admin/products/edit', product.id]" class="button is-info is-light">
+                  <i class="fas fa-edit"></i>
+                </a>
+                <button class="button is-danger is-light" (click)="deleteProduct(product.id)">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

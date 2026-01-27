@@ -15,4 +15,22 @@ export class ProductService {
   getOne(id: number) {
     return this.http.get<Product>(`${this.apiUrl}/products/${id}`);
   }
+
+  // Crear (Usa FormData para poder enviar archivos/fotos)
+  create(productData: FormData) {
+    return this.http.post(`${this.apiUrl}/products`, productData);
+  }
+
+  // Editar
+  update(id: number, productData: FormData) {
+    // Usamos PATCH para actualizar parcialmente
+    return this.http.patch(`${this.apiUrl}/products/${id}`, productData);
+  }
+
+  // Borrar
+  delete(id: number) {
+    return this.http.delete(`${this.apiUrl}/products/${id}`);
+  }
 }
+
+
