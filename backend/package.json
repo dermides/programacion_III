@@ -59,6 +59,7 @@
     "@types/paypal__checkout-server-sdk": "^1.0.8",
     "@types/socket.io": "^3.0.1",
     "@types/uuid": "^10.0.0",
+    "@types/ws": "^8.18.1",
     "nodemon": "^3.1.11",
     "rimraf": "^5.0.5",
     "ts-node": "^10.9.2",
