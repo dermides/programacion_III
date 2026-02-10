@@ -10,7 +10,7 @@ import wallet from "./wallet";
 
 const routes = Router();
 
-app.get('/', (req: Request, res: Response) => {
+routes.get('/', (req: Request, res: Response) => {
   res.send('¡API del E-commerce funcionando perfectamente! 🚀');
 });
 
