@@ -9,6 +9,10 @@ import wallet from "./wallet";
 
 const routes = Router();
 
+app.get('/', (req, res) => {
+  res.send('¡API del E-commerce funcionando perfectamente! 🚀');
+});
+
 // Definición de las URLs base por módulo
 routes.use("/auth", auth);       // Rutas serán: /api/auth/...
 routes.use("/users", user);      // Rutas serán: /api/users/...
