@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { AppDataSource } from "../data-source"; // <--- Importas la fuente de datos
-import { Notification } from "../entities/Notification";
+import { AppNotification } from "../entities/Notification";
 
 export class NotificationController {
 
@@ -8,7 +8,7 @@ export class NotificationController {
     const userId = res.locals.jwtPayload.userId; 
 
     // FORMA CORRECTA EN TYPEORM 0.3
-    const notificationRepo = AppDataSource.getRepository(Notification);
+    const notificationRepo = AppDataSource.getRepository(AppNotification);
     
     const notifications = await notificationRepo.find({
       where: { user: { id: userId } },
@@ -24,7 +24,7 @@ export class NotificationController {
     const userId = res.locals.jwtPayload.userId;
 
     // Obtener repositorio de la instancia
-    const notificationRepo = AppDataSource.getRepository(Notification);
+    const notificationRepo = AppDataSource.getRepository(AppNotification);
     
     const notification = await notificationRepo.findOne({ 
         where: { id: Number(id), user: { id: userId } } 
