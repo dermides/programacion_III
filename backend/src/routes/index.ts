@@ -1,4 +1,5 @@
 import { Router } from "express";
+import express, { Request, Response } from 'express'; // <--- Agrega Request y Response
 import auth from "./auth";
 import user from "./user";
 import product from "./product";
@@ -9,7 +10,7 @@ import wallet from "./wallet";
 
 const routes = Router();
 
-app.get('/', (req, res) => {
+app.get('/', (req: Request, res: Response) => {
   res.send('¡API del E-commerce funcionando perfectamente! 🚀');
 });
 
