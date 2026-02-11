@@ -23,9 +23,10 @@ export class AdminProductsComponent implements OnInit {
   }
 
   loadProducts() {
-    this.productService.getAll().subscribe(data => {
+    /*this.productService.getAll().subscribe(data => {
       this.products = data;
-    });
+    });*/
+    this.productService.getAll().subscribe((response: any) => this.products = response.data);
   }
 
   deleteProduct(id: number) {

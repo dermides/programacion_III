@@ -16,6 +16,7 @@ export class ProductListComponent {
 
   // Observable que trae los productos automáticamente
   products$ = this.productService.getAll();
+  
 
   // Para construir la URL de la imagen
   apiUrl = environment.apiUrl;
