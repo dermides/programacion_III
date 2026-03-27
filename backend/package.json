@@ -11,7 +11,8 @@
     "typeorm": "typeorm-ts-node-commonjs",
     "migration:generate": "npm run typeorm migration:generate -- -d src/data-source.ts",
     "migration:run": "npm run typeorm migration:run -- -d src/data-source.ts",
-    "migration:revert": "npm run typeorm migration:revert -- -d src/data-source.ts"
+    "migration:revert": "npm run typeorm migration:revert -- -d src/data-source.ts",
+    "install-build": "npm install && npm run build"
   },
   "keywords": [
     "nodejs",
@@ -48,7 +49,7 @@
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
     "@types/cookie-parser": "^1.4.4",
-    "@types/cors": "^2.8.14",
+    "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/morgan": "^1.9.5",
@@ -58,6 +59,7 @@
     "@types/paypal__checkout-server-sdk": "^1.0.8",
     "@types/socket.io": "^3.0.1",
     "@types/uuid": "^10.0.0",
+    "@types/ws": "^8.18.1",
     "nodemon": "^3.1.11",
     "rimraf": "^5.0.5",
     "ts-node": "^10.9.2",
