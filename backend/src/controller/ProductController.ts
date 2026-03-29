@@ -15,10 +15,14 @@ const deleteFile = (fileName: string) => {
 
 
 export class ProductController {
+  
   static getAll = async (req: Request, res: Response) => {
+    
     const productRepo = AppDataSource.getRepository(Product);
     const products = await productRepo.find();
+
     res.json(products);
+
   };
 
   static create = async (req: Request, res: Response) => {

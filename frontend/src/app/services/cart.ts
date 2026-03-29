@@ -1,10 +1,14 @@
 import { Injectable, signal, computed, inject, PLATFORM_ID, effect } from '@angular/core';
 import { Product, CartItem } from '../models';
 import { isPlatformBrowser } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class CartService {
   private platformId = inject(PLATFORM_ID);
+  private http = inject(HttpClient);
 
   // 1. Estado Reactivo: Lista de ítems
   cartItems = signal<CartItem[]>([]);
@@ -68,4 +72,12 @@ export class CartService {
   clear() {
     this.cartItems.set([]);
   }
+
+  getPayPalClientId() {
+    // Asumiendo que tu backend está en localhost:3000/api
+    return this.http.get<{ clientId: string }>(`${environment.apiUrl}/config/paypal`);
+
+  }
+
+
 }

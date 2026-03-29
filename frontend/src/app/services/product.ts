@@ -22,9 +22,15 @@ export class ProductService {
   }
 
   // Editar
-  update(id: number, productData: FormData) {
+  /*update(id: number, productData: FormData) {
     // Usamos PATCH para actualizar parcialmente
     return this.http.patch(`${this.apiUrl}/products/${id}`, productData);
+  }*/
+
+  // En product.service.ts
+  update(id: number, productData: any) { // Cambia FormData por 'any' o Product
+    // Asegúrate de enviar JSON si tu backend no tiene Multer configurado aún
+    return this.http.put(`${this.apiUrl}/products/${id}`, productData);
   }
 
   // Borrar

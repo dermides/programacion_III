@@ -4,6 +4,7 @@ import { CurrencyPipe, CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { environment } from '../../../environments/environment';
 
+
 @Component({
   selector: 'app-cart',
   standalone: true,

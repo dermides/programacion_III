@@ -76,6 +76,25 @@
           </p>
         </div>
       </div>
+      <div class="card has-background-light">
+        <div class="card-content">
+          <h2 class="title is-4 mb-4">💳 Finalizar Compra</h2>
+          <p class="subtitle is-6 mb-5">
+            Completa tu pago de forma segura con PayPal.
+          </p>
+
+          @if (payPalConfig) {
+            <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+          } @else {
+            <p>Cargando opciones de pago...</p>
+          }
+
+          <p class="help has-text-centered mt-3">
+            <span class="icon is-small"><i class="fas fa-lock"></i></span>
+            Transacción encriptada y segura.
+          </p>
+        </div>
+      </div>
     </div>
 
   </div>

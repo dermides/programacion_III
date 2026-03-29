@@ -12,10 +12,18 @@
   </div>
 
   <div class="box">
+    <div class="field has-addons mb-4">
+      <div class="control has-icons-left is-expanded">
+        <input class="input" type="text" placeholder="Buscar por código o nombre..." (input)="filterProducts($event)">
+        <span class="icon is-small is-left">
+          <i class="fas fa-search"></i>
+        </span>
+      </div>
+    </div>
     <table class="table is-fullwidth is-striped is-hoverable">
       <thead>
         <tr>
-          <th>ID</th>
+          <th>Codigo</th>
           <th>Nombre</th>
           <th>Precio</th>
           <th>Stock</th>
@@ -23,27 +31,31 @@
         </tr>
       </thead>
       <tbody>
-        @for (product of products; track product.id) {
-          <tr>
-            <td>{{ product.id }}</td>
-            <td><strong>{{ product.name }}</strong></td>
-            <td>{{ product.price | currency:'USD' }}</td>
-            <td>
-              <span class="tag" [class.is-danger]="product.stock === 0" [class.is-success]="product.stock > 0">
-                {{ product.stock }}
-              </span>
-            </td>
-            <td>
-              <div class="buttons are-small">
-                <a [routerLink]="['/admin/products/edit', product.id]" class="button is-info is-light">
-                  <i class="fas fa-edit"></i>
-                </a>
-                <button class="button is-danger is-light" (click)="deleteProduct(product.id)">
-                  <i class="fas fa-trash"></i>
-                </button>
-              </div>
-            </td>
-          </tr>
+        @for (item of products(); track $index) {
+        <tr>
+          <td>{{ item.id }}</td>
+          <td><strong>{{ item.name }}</strong></td>
+          <td>{{ item.price | currency:'USD' }}</td>
+          <td>
+            <span class="tag" [class.is-danger]="item.stock === 0" [class.is-success]="item.stock > 0">
+              {{ item.stock }}
+            </span>
+          </td>
+          <td>
+            <div class="buttons are-small">
+              <a [routerLink]="['/admin/products/edit', item.id]" class="button is-info is-light">
+                <i class="fas fa-edit"></i>
+              </a>
+              <button class="button is-danger is-light" (click)="deleteProduct(item.id)">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+        } @empty {
+        <tr>
+          <td colspan="5">No hay datos.</td>
+        </tr>
         }
       </tbody>
     </table>
